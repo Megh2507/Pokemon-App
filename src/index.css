@@ -74,11 +74,11 @@ background-image: linear-gradient(315deg, #772f1a 0%, #f2a65a 74%);
   padding: 3rem 1rem;
 }
 .app-container h1{
-  width: 0ch;
+  /* width: 0ch; */
   color: rgb(38, 16, 236);
-  overflow: hidden;
+  /* overflow: hidden; */
   white-space: nowrap;
-  animation: text 4s steps(15) infinite alternate;
+  /* animation: text 4s steps(15) infinite alternate; */
   
 
 }
@@ -104,6 +104,7 @@ background-image: linear-gradient(315deg, #772f1a 0%, #f2a65a 74%);
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  width: 80%;
 }
 
 
@@ -121,10 +122,12 @@ background-image: linear-gradient(315deg, #772f1a 0%, #f2a65a 74%);
   text-align: center;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
 }
+/*
 .thumb-container :hover{
   margin: 0.7rem 0;
   
 }
+*/
 
 h3 {
   margin-bottom: 0.2rem;
@@ -147,7 +150,13 @@ h3 {
   flex-direction: column;
   width: 100%;
 }
-.detail-wrapper button {
+
+.poke-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.poke-wrapper button {
   color: rgb(22, 22, 22);
   padding: .5rem;
   margin-top: 1rem;
@@ -155,6 +164,8 @@ h3 {
   border-radius: 0.2rem;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.185);
+  display: flex;
+    align-items: center;
 }
 .load-more {
   
@@ -185,4 +196,21 @@ button:hover{
 }
 h3{
   text-decoration: underline;
+}
+
+.true-show {
+  flex-direction: row;
+  flex-basis: 100%;
+}
+
+.desc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
+
+.sprite {
+  width: 50px !important;
+  height: 50px !important;
 }

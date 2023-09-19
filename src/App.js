@@ -1,35 +1,51 @@
-
-
-
 import React,{ useEffect, useState } from "react";
 import PokemonThumbnail from "./Components/PokemonThumbnail";
 
 
 function App() {
+  // Hooks
   const [allPokemons,setAllPokemons] = useState([]);
   const [loadPoke,setLoadPoke] = useState('https://pokeapi.co/api/v2/pokemon?limit=20');
+
+  // Helper functions
   const getAllPokemons = async () =>{
     const res = await fetch(loadPoke)
     const data = await res.json()
+
     setLoadPoke(data.next)
+
+    const newPokemons = [];
    
-    function createPokemonObject(result){
-      result.forEach(async (pokemon) => {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-        const data = await res.json();
-        setAllPokemons(currentList => [...currentList,data])
-      });
+    async function fetchPokemonData(pokemon) {
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
+      const data = await res.json();
+      newPokemons.push(data);
     }
-    createPokemonObject(data.results)
-    await console.log(allPokemons)
-  }
+
+    // Fetch data for each new Pokemon and check for duplicates before updating state
+    // iterate through the list of new Pokemon
+    for (const pokemon of data.results) {
+      // extract the Pokemon's ID from its URL
+      const pokemonId = pokemon.url.split("/").slice(-2, -1)[0];
+      // checks if the current pokemonId is not already present in the allPokemons
+      if (!allPokemons.some((p) => p.id === pokemonId)) {
+        // fetch the detailed data for this Pokemon
+        await fetchPokemonData(pokemon);
+      }
+    }
+
+    setAllPokemons((currentList) => [...currentList, ...newPokemons]);
+  };
+
+  console.log(allPokemons)
+
   useEffect(()=>{
     getAllPokemons()
   },[])
 
   return (
     <div className="app-container">
-     <h1>Pokemon Kingdom .</h1>
+     <h1>Pokemon Kingdom</h1>
     
      <div className="pokemon-container">
        <div className="all-container">
@@ -54,6 +70,11 @@ function App() {
                   bs4 = {pokemon.stats[3].base_stat}
                   bs5 = {pokemon.stats[4].base_stat}
                   bs6 = {pokemon.stats[5].base_stat}
+
+                  abil = {pokemon.abilities}
+                  mov = {pokemon.moves}
+
+                  sprite = {pokemon.sprites}
                   
                  />
             )}
