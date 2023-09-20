@@ -15,9 +15,7 @@ const PokemonThumbnail = ({id,name,image,type,height,weight,stat1,stat2,stat3,st
                 <img src={image} alt={name} />
                 <h3>{name.toUpperCase() }</h3>
                 <small>Type : {type}</small>
-                <button className="pokeinfo" onClick={()=>setShow(!show)}>{show===true?"Know less...":"Know more..."}
-                    {!show ? <img className='sprite' src={sprite.front_default}></img> : <img className='sprite' src={sprite.front_shiny}></img>}
-                </button>
+                <button className="pokeinfo" onClick={()=>setShow(!show)}>{show===true?"Know less...":"Know more..."}</button>
             </div>
             
             <div className="detail-wrapper">
@@ -39,10 +37,26 @@ const PokemonThumbnail = ({id,name,image,type,height,weight,stat1,stat2,stat3,st
 
                 abil={abil}
                 mov={mov}
+                sprite={sprite}
 
                  /> :<></>}
-                
-            </div>
+                 <div className='sprites'>
+                    <h3>Sprites</h3>
+                    <div className='sprite-container'>
+                        <div className='sprite-row'>
+                            <p>Front: </p>
+                            <img src={sprite.front_default}></img>
+                        </div>
+
+                        <div className='sprite-row'>
+                            <p>Back: </p>
+                            <img src={sprite.back_default}></img>
+                        </div>
+                    </div>
+                </div>
+                    
+                </div>
+            
             
         </div>
     )

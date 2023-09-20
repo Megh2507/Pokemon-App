@@ -5,11 +5,12 @@ const Description = ({heightpok,weightpok,pokstat1,pokstat2,pokstat3,pokstat4,po
     return (
         <div className="desc">
             <div className='height-weight'>
-                <p><b>Height</b> is <b>{heightpok*10} cm.</b></p>
-                <p><b>Weight</b> is <b>{weightpok*0.1} kg</b></p>
+                <h3>Height</h3>
+                <p>{heightpok*10} cm.</p>
+                <h3>Weight</h3>
+                <p>{weightpok*0.1} kg</p>
             </div>
             
-
             <div className='stat'>
                 <h3>Stat</h3>
                 <p>{pokstat1} : {posbs1}</p>
@@ -29,6 +30,8 @@ const Description = ({heightpok,weightpok,pokstat1,pokstat2,pokstat3,pokstat4,po
                 <h3>Moves</h3>
                 <p>{mov.slice(0,5).map((m, index) => (<p>Move {index + 1} : {m.move.name}</p>))}</p>
             </div>
+
+            
         </div>
     )
 }
